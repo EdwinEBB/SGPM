@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+	*{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-family: 'Montserrat Alternates', sans-serif;
+	}
+	body{
+		background: url(img/emp2.jpg);
+		background-size: 100vw 100vh;
+		background-repeat: no-repeat;
+	}
+	.capa{
+		position: fixed;
+		width: 100%;
+		height: 100vh;
+		background: rgba(0,0,0,0.6);
+		z-index: -1;
+		top: 0;left: 0;
+	}
+	.header{
+		width: 100%;
+		height: 100px;
+		position: fixed;
+		top: 0;left: 0;
+	}
+	.container{
+		width: 90%;
+		max-width: 1200px;
+		margin: auto;
+	}
+	.container .btn-menu, .logo{
+		float: left;
+		line-height:100px;
+	}
+	.container .btn-menu label{
+		color: #eee;
+		font-size: 25px;
+		cursor: pointer;
+	}
+	.logo h1{
+		color: #fff;
+		font-family:Georgia, 'Times New Roman', Times, serif;
+		font-weight: 400;
+		font-size: 40px;
+		margin-left: 10px;
+	}
+	.container .menu{
+		float: right;
+		line-height: 100px;
+	}
+	.container .menu a{
+		display: inline-block;
+		padding: 15px;
+		line-height: normal;
+		text-decoration: none;
+		color: #eee;
+		transition: all 0.3s ease;
+		border-bottom: 2px solid transparent;
+		font-size: 15px;
+		margin-right: 5px;
+	}
+	.container .menu a:hover{
+		border-bottom: 2px solid #c7c7c7;
+		padding-bottom: 5px;
+	}
+	#btn-menu{
+		display: none;
+	}
+
+	.container-menu{
+		position: absolute;
+		background: rgba(0,0,0,0.5);
+		width: 100%;
+		height: 100vh;
+		top: 0;left: 0;
+		transition: all 500ms ease;
+		opacity: 0;
+		visibility: hidden;
+	}
+	#btn-menu:checked ~ .container-menu{
+		opacity: 1;
+		visibility: visible;
+	}
+	.cont-menu{
+		width: 100%;
+		max-width: 250px;
+		background: #1c1c1c;
+		height: 100vh;
+		position: relative;
+		transition: all 500ms ease;
+		transform: translateX(-100%);
+	}
+	#btn-menu:checked ~ .container-menu .cont-menu{
+		transform: translateX(0%);
+	}
+	.cont-menu nav{
+		transform: translateY(15%);
+	}
+	.cont-menu nav a{
+		display: block;
+		text-decoration: none;
+		padding: 20px;
+		color: #75e44f;
+		border-left: 5px solid transparent;
+		transition: all 400ms ease;
+	}
+	.cont-menu nav a:hover{
+		border-left: 5px solid #c7c7c7;
+		background: #1f1f1f;
+	}
+	.cont-menu label{
+		position: absolute;
+		right: 20px;
+		padding-top: 15px;
+		top: 10px;
+		color: #fff;
+		cursor: pointer;
+		font-size: 18px;
+	}
+
+img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
+	margin-left: 80px;
+}
+.cont-menu nav p{
+	margin-left: 70px;
+	color: #c7c7c7;
+	padding: 8px;
+}
+    </style>
+	<meta charset="UTF-8">
+	<title>Inicio</title>
+</head>
+<body>
+	<header class="header">
+		<div class="container">
+		<div class="btn-menu">
+		</div>
+			<div class="logo">
+				<h1>CURN WORKING</h1>
+			</div>
+			<nav class="menu">
+				<a href="login.html">Login</a>
+				<a href="contacto.html">Contacto</a>
+			</nav>
+		</div>
+	</header>
+	<div class="capa"></div>
+<input type="checkbox" id="btn-menu">
+<div class="container-menu">
+	<div class="cont-menu">
+		<nav>
+			<div class="profile-card">
+				<img src="img/logo.png" alt="logo">
+			</div>
+			<a href="#">Empleados - Usuarios</a>
+			<p>Registrar Empleados</p>
+			<p>Gestionar Empleados</p>
+			<a href="#">Recaudos</a>
+			<p>Registrar Pagos</p>
+			<p>Contabilidad</p>
+			<p>Facturación</p>
+			<a href="#">Reportes</a>
+			<p>Reporte-Caja</p>
+		</nav>
+		<label for="btn-menu">X</label>
+	</div>
+</div>
+
+</body>
+</html>

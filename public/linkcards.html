@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Recupera tu cuenta</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+body {
+background: url(img/emp.jpg);
+background-repeat: no-repeat;
+background-size: 100vw 100vh;
+}
+/*Cards*/
+.container-card{
+	width: 100%;
+	display: flex;
+	max-width: 1100px;
+	margin: auto;
+}
+
+.title-cards{
+	width: 100%;
+	max-width: 1080px;
+	margin: auto;
+	padding: 20px;
+	margin-top: 20px;
+	text-align: center;
+	color: #f6f6f6;
+}
+.card{
+	width: 100%;
+	margin: 20px;
+	border-radius: 6px;
+	overflow: hidden;
+	background:#fff;
+    background: rgba(0, 0, 0, .4);
+	box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+	transition: all 400ms ease-out;
+	cursor: default;
+}
+.card:hover{
+	box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
+	transform: translateY(-3%);
+}
+.card img{
+	width: 100px;
+    margin-left: 110px;
+    padding-top: 25px;
+}
+.card .contenido-card{
+	padding: 15px;
+	text-align: center;
+}
+.card .contenido-card h3{
+	margin-bottom: 15px;
+	color: #f4f4f4;
+}
+/*texto*/
+.card .contenido-card p{
+	line-height: 1.8;
+	color: #eee;
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+/*boton leeer*/
+.card .contenido-card a{
+	display: inline-block;
+	padding: 10px;
+	margin-top: 10px;
+	text-decoration: none;
+	color: #2fb4cc;
+	border: 1px solid #2fb4cc;
+	border-radius: 4px;
+	transition: all 400ms ease;
+	margin-bottom: 5px;
+}
+.card .contenido-card a:hover{
+	background: #2fb4cc;
+	color: #fff;
+}
+@media only screen and (min-width:320px) and (max-width:768px){
+	.container-card{
+		flex-wrap: wrap;
+	}
+	.card{
+		margin: 15px;
+	}
+}
+    </style>
+</head>
+<body>
+<div class="title-cards">
+		<h2>SERVICIOS QUE OFRECEMOS</h2>
+	</div>
+<div class="container-card">
+	
+<div class="card">
+	<figure>
+		<img src="img/avt1.png" class="avatar1" alt="Avatar Image">
+	</figure>
+	<div class="contenido-card">
+        <h3>¿Has olvidado tu nombre de usuario?</h3>
+        <p>Aquí puedes solicitar que te enviemos un recordatorio a tu correo electronico.</p>
+		<a href="nomus.html">Leer más</a>
+	</div>
+</div>
+<div class="card">
+	<figure>
+		<img src="img/padlock.png" class="avatar2" alt="Avatar Image">
+	</figure>
+	<div class="contenido-card">
+		<h3>¿Has olvidado tu contraseña?</h3>
+		<p>Por favor introduce tu dirección de correo electrónico para recibir un enlace de restablecimiento de contraseña.</p>
+		<a href="conus.html">Leer más</a>
+	</div>
+</div>
+<div class="card">
+	<figure>
+		<img src="img/contact.png" class="avatar1" alt="Avatar Image">
+	</figure>
+	<div class="contenido-card">
+		<h3>Contactanos</h3>
+		<p>Disponemos de varias formas para que puedas comunicarte con nosotros de manera directa, clara y sencilla. Conócelos en este espacio.</p>
+		<a href="contacto.html">Leer más</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

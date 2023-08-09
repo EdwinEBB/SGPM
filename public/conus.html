@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Recupera tu cuenta</title>
+<style>
+    .card {
+        margin-left: 500px;
+  width: 320px;
+  height: 500px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  background: #fff;
+  border-radius: 20px;
+}
+
+.card > * {
+  margin: 0;
+}
+
+.card__title {
+  color: #333;
+}
+
+.card__content {
+  font-size: 13px;
+  line-height: 18px;
+  color: #333;
+}
+
+.card__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card__form input {
+  margin-top: 10px;
+  outline: 0;
+  background: rgb(255, 255, 255);
+  box-shadow: transparent 0px 0px 0px 1px inset;
+  padding: 0.6em;
+  border-radius: 14px;
+  border: 1px solid #333;
+  color: black;
+}
+
+.card__form button {
+  border: 0;
+  background: #111;
+  color: #fff;
+  padding: 0.68em;
+  border-radius: 14px;
+  font-weight: bold;
+}
+
+.sign-up:hover {
+  opacity: 0.8;
+} 
+
+</style>
+<body>
+<div class="card">
+    <h1 class="card__title">Introduce tu nombre de usuario</h1>
+    <p class="card__content">El que necesitarás para iniciar sesión.
+    </p>
+    <div class="card__form">
+        <input type="text" placeholder="Tu correo">
+        <button class="sign-up">Buscar</button>
+    </div>
+</div>
