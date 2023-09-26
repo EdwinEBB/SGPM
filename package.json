@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "keywords": [],
   "author": "",
@@ -12,9 +13,25 @@
   "dependencies": {
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
+    "connect-flash": "^0.1.1",
+    "consolidate": "^1.0.1",
     "cowsay": "^1.5.0",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "mongoose": "^7.2.0"
+    "express-handlebars": "^7.1.2",
+    "express-session": "^1.17.3",
+    "fixed": "^0.3.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^7.2.0",
+    "mustache": "^4.2.0",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "handlebars": "^4.7.8",
+    "nodemon": "^3.0.1",
+    "npm-check-updates": "^16.14.4"
   }
 }

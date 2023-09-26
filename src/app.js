@@ -1,17 +1,14 @@
-const express= require("express");
-const bcrypt= require("bcrypt");
-const conect=require("./db");
+const app=require("./server");
+const env=require("dotenv").config();
 const bodyparcero=require("body-parser");
 const connectamongo = require("./db");
-const usuario=require("./public/user")
-const app= express();
-const compare=require("./public/baicript");
+const usuario=require("./models/user");
+const compare=require("./helpers/baicript");
 
-const port=8000;
+console.log(process.env.TESTING);
 
 app.use(bodyparcero.json());
-app.use(bodyparcero.urlencoded({extended:false}));
-app.use(express.static(__dirname + '/public'));
+
 
 
 connectamongo();
@@ -32,7 +29,7 @@ app.post('/register',(req,res)=>{
         if(!r){
             res.status(500).send("ERROR AL REGISTRAR");
         }else{
-            res.redirect("inicio.html");
+            res.redirect('/');
         }
         console.log(r);
    }
@@ -55,7 +52,7 @@ app.post('/autenticar',(req,res)=>{
             const checkcontra= await compare(us.contraseña,encontrar.contraseña);
             console.log(checkcontra);
             if(checkcontra){
-                res.redirect("inicio2.html");
+               res.redirect('/inicio');
             }else{
                 res.status(500).send(`CONTRASEÑA INCORRECTA`);
             }
@@ -88,8 +85,10 @@ app.use((req,res)=>{
 });
 
 
-app.listen(port,()=>{
-    console.log(`Servidor iniciado en el puerto ${port}`)
+app.listen(app.get('port'),()=>{
+    console.log(`Servidor iniciado en el puerto ${app.get('port')}`)
 })
+
+
 
 
