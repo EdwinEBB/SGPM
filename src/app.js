@@ -4,6 +4,7 @@ const bodyparcero=require("body-parser");
 const connectamongo = require("./db");
 const usuario=require("./models/user");
 const compare=require("./helpers/baicript");
+const push=require("push.js");
 
 console.log(process.env.TESTING);
 
@@ -47,7 +48,7 @@ app.post('/autenticar',(req,res)=>{
         
         const encontrar= await usuario.findOne({correo:us.correo}).exec();
        if(!encontrar){
-            res.status(500).send("USUARIO INCORRECTO O INEXISTENTE");
+            push.create('Algo anda mas');
         }else{
             const checkcontra= await compare(us.contraseña,encontrar.contraseña);
             console.log(checkcontra);
