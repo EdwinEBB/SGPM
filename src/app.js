@@ -1,10 +1,10 @@
 const app=require("./server");
 const env=require("dotenv").config();
+const express=require("express");
 const bodyparcero=require("body-parser");
 const connectamongo = require("./db");
 const usuario=require("./models/user");
 const compare=require("./helpers/baicript");
-const push=require("push.js");
 
 console.log(process.env.TESTING);
 
@@ -48,7 +48,7 @@ app.post('/autenticar',(req,res)=>{
         
         const encontrar= await usuario.findOne({correo:us.correo}).exec();
        if(!encontrar){
-            push.create('Algo anda mas');
+            res.status(500).send("usuario no encontrado");
         }else{
             const checkcontra= await compare(us.contraseña,encontrar.contraseña);
             console.log(checkcontra);
@@ -61,25 +61,9 @@ app.post('/autenticar',(req,res)=>{
     };
     //console.log(us);
     si(us);
-
-    /*usuario.findOne(us,(err,user)=>{
-        if(err){
-            res.status(500).send("ERROR AL AUTENTICAR");
-        }else if(!user){
-            res.status(500).send("EL USUARIO NO EXISTE");
-        }else{
-            usuario.correcontra(us.contraseña, (err,resultado)=>{
-                if(err){
-                    res.status(500).send("ERROR AL AUTENTICAR");
-                }else if(resultado){
-                    res.redirect("inicio2.html");
-                }else{
-                    res.status(500).send("usuario y/o contraseña incorrectos")
-                }
-            })
-        }
-    })*/
 });
+
+
 
 app.use((req,res)=>{
     res.status(404).sendFile(__dirname + "/public/404.html")

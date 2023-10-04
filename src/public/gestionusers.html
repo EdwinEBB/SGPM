@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {{#muser}}
+        <div class="cuadro">
+        <h1>{{Nombre}}</h1>
+        <h2>{{correo}}</h2>
+        </div>
+        <form action="/inicio/crud/delete/{{_id}}?_method=DELETE" method="POST">
+            <input type="hidden" name="_method" value="DELETE"> 
+            <button type="submit">Eliminar</BUtton>
+        </form>
+
+
+    {{/muser}}
+</body>
+</html>
