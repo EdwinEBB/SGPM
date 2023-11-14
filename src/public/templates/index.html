@@ -1,0 +1,54 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de empleo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h1 class="text-center">Ingrese la oferta laboral que desea buscar</h1>
+                        <form id="searchForm" action="/search" method="post">
+                            <div class="form-group">
+                                <label for="query">Buscar:</label>
+                                <input type="text" class="form-control" id="query" name="query" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block" onclick="showLoadingMessage()">Buscar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        function showLoadingMessage() {
+            Swal.fire({
+                title: 'Estamos buscando las mejores ofertas para ti',
+                icon: 'info',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                timer: 60000 // 1 minuto
+            }).then(() => {
+                document.getElementById('searchForm').submit();
+            });
+        }
+    </script>
+</body>
+</html>

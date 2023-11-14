@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="confistyle.css">
+    <title>Configuración</title>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Configuración</h1>
+
+        <div id="darkModeSettings" class="settings-container">
+            <h2>Modo Oscuro</h2>
+            <label>
+                <input type="checkbox" id="darkModeCheckbox"> Activar Modo Oscuro
+            </label>
+        </div>
+
+        <div id="fontSizeSettings" class="settings-container">
+            <h2>Tamaño de Fuente</h2>
+            <label>
+                Pequeño <input type="radio" name="fontSize" value="small" id="fontSizeSmall">
+            </label>
+            <label>
+                Mediano <input type="radio" name="fontSize" value="medium" id="fontSizeMedium" checked>
+            </label>
+            <label>
+                Grande <input type="radio" name="fontSize" value="large" id="fontSizeLarge">
+            </label>
+        </div>
+
+        <div id="themeColorSettings" class="settings-container">
+            <h2>Color del Tema</h2>
+            <label>
+                <input type="radio" name="themeColor" value="blue" id="themeColorBlue" checked> Azul
+            </label>
+            <label>
+                <input type="radio" name="themeColor" value="green" id="themeColorGreen"> Verde
+            </label>
+            <label>
+                <input type="radio" name="themeColor" value="orange" id="themeColorOrange"> Naranja
+            </label>
+        </div>
+
+        <div id="notificationSettings" class="settings-container">
+            <h2>Notificaciones</h2>
+            <label>
+                <input type="checkbox" id="notificationCheckbox"> Activar Notificaciones
+            </label>
+        </div>
+
+        <div id="spacingSettings" class="settings-container">
+            <h2>Espaciado</h2>
+            <label>
+                Compacto <input type="radio" name="spacing" value="compact" id="spacingCompact" checked>
+            </label>
+            <label>
+                Normal <input type="radio" name="spacing" value="normal" id="spacingNormal">
+            </label>
+            <label>
+                Amplio <input type="radio" name="spacing" value="wide" id="spacingWide">
+            </label>
+        </div>
+
+        <div id="cursorStyleSettings" class="settings-container">
+            <h2>Estilo del Cursor</h2>
+            <label>
+                Predeterminado <input type="radio" name="cursorStyle" value="default" id="cursorStyleDefault" checked>
+            </label>
+            <label>
+                Subrayado <input type="radio" name="cursorStyle" value="underline" id="cursorStyleUnderline">
+            </label>
+            <label>
+                Ampliado <input type="radio" name="cursorStyle" value="expanded" id="cursorStyleExpanded">
+            </label>
+        </div>
+    </div>
+    <button type="button" OnClick="location.href='index.html'"><span></span>Regresar</button>
+
+    <script src="config.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar user</title>
+</head>
+<body>
+    <div class="card1">
+        <div class="cabezera">
+            <h3>Modificar datos de usuario</h3>
+        </div>
+        <div class="cuerpo">
+            <form action="/inicio/crud/edit-user/{{u._id}}?_method=PUT" method="post" class="formu">
+                <input type="hidden" name="_method" value="PUT">
+                <div class="grupodiv">
+                    <input type="text" name="Nombre" class="form-control" value="{{u.Nombre}}">
+                </div>
+                <div class="grupodiv">
+                    <input type="text" name="correo" class="form-control" value="{{u.correo}}">
+                </div>
+                <div class="grupodiv">
+                    <input type="text" name="contraseña" class="form-control" value="{{u.contraseña}}">
+                </div>
+                <div class="grupodiv">
+                    <button type="submit" class="btn">Modificar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

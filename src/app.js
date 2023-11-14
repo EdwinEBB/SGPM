@@ -1,14 +1,23 @@
 const app=require("./server");
 const env=require("dotenv").config();
-const express=require("express");
 const bodyparcero=require("body-parser");
 const connectamongo = require("./db");
 const usuario=require("./models/user");
 const compare=require("./helpers/baicript");
-
+const notifier=require("node-notifier");
+const path=require("path");
+const passport=require('passport');
+const configurarpassport=require('./config/passport');
 console.log(process.env.TESTING);
+require('./config/passport');
+app.use(configurarpassport());
 
 app.use(bodyparcero.json());
+
+var globo= new notifier.WindowsBalloon({
+    withFallback:false,
+    customPath:undefined
+});
 
 
 
@@ -22,23 +31,57 @@ app.post('/register',(req,res)=>{
         contraseña:req.body.contraseña
     };
     
-   const newu=new usuario(nuevou);
-   console.log(newu);
-
-   const guardar= async (p)=>{
-        const r= await newu.save();
-        if(!r){
-            res.status(500).send("ERROR AL REGISTRAR");
+   if(nuevou.Nombre=="" || nuevou.correo==""||nuevou.contraseña==""){
+    globo.notify({
+        title:'Campos vacios',
+        message:'No pueden quedar campos vacios',
+        time:1000,
+        timeout:1,
+        sound:true,
+        wait:true,
+        type:'warn'
+    });
+    res.redirect('/login');
+   }else{
+    const newu=new usuario(nuevou);
+    console.log(newu);
+    const guardar= async (p)=>{
+        const existente= await usuario.findOne({correo:nuevou.correo}).exec();
+        if(existente){
+            globo.notify({
+                title:'Usuario ya existente',
+                message:nuevou.correo+" ya existe",
+                time:5000,
+                sound:true,
+                wait:true,
+                type:'warn'
+            });
+            res.redirect('/login');
         }else{
-            res.redirect('/');
+            const r= await newu.save();
+            if(!r){
+                res.status(500).send("ERROR AL REGISTRAR");
+            }else{
+                notifier.notify({
+                    title:'Usuario registrado correctamente',
+                    message:`${nuevou.Nombre} has sido registrado correctamente`
+                })
+                res.redirect('/login');
+            }
+            console.log(r);
         }
-        console.log(r);
+        
    }
    guardar();
+   }
 });
 
-app.post('/autenticar',(req,res)=>{
-    const us={
+app.post('/autenticar', passport.authenticate('local',{
+    failureRedirect:'/login',
+    successRedirect:'/inicio',
+    failureFlash:true
+})
+    /*const us={
         correo:req.body.correo,
         contraseña:req.body.contraseña
     };
@@ -48,20 +91,54 @@ app.post('/autenticar',(req,res)=>{
         
         const encontrar= await usuario.findOne({correo:us.correo}).exec();
        if(!encontrar){
-            res.status(500).send("usuario no encontrado");
+            globo.notify({
+                title:'Usuario no encontrado',
+                message:us.correo+' no esta registrado',
+                time:5000,
+                sound:false,
+                wait:true,
+                type:'error'
+            },
+            function(err,response){
+                console.log(response);
+            });
+            res.redirect('/login');
         }else{
             const checkcontra= await compare(us.contraseña,encontrar.contraseña);
             console.log(checkcontra);
             if(checkcontra){
-               res.redirect('/inicio');
+                notifier.notify({
+                    title:'Inicio de sesion completado',
+                    message:"Bienvenido "+encontrar.Nombre,
+                    icon:path.join(__dirname, 'public/img/logo.jpeg'),
+                    sound:true,
+                    wait:true,
+                    timeout:1
+                },
+                function(err,response,metadata){
+
+                })
+                res.redirect('/inicio')
             }else{
-                res.status(500).send(`CONTRASEÑA INCORRECTA`);
+                globo.notify({
+                    title:'Contraseña incorrecta',
+                    message:"La contraseña que digitaste no es correcta",
+                    time:1000,
+                    timeout:1000,
+                    sound:true,
+                    wait:true,
+                    type:'warn'
+                },
+                function(err,response){
+                    console.log(response);
+                });
+                res.redirect('/login');
             }
         }
     };
     //console.log(us);
-    si(us);
-});
+    si(us);*/
+);
 
 
 

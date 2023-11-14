@@ -1,0 +1,40 @@
+<!-- results.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de la búsqueda</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="text-center">Resultados de la búsqueda para '{{ query }}'</h1>
+                <div class="card-container">
+                    {% for result in results %}
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ result }}</h5>
+                                <form action="{{ result }}" method="get" target="_blank">
+                                    <button type="submit" class="btn btn-primary">Ir al enlace</button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <a href="/" class="back-button mt-3">Volver a la página principal</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+

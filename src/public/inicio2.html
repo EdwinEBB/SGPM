@@ -1,367 +1,298 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <style>
-	*{
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-		font-family: 'Montserrat Alternates', sans-serif;
-	}
-	body{
-		background: url(img/emp3.jpg);
-		background-size: 100vw 100vh;
-		background-repeat: no-repeat;
-	}
-	.capa{
-		position: fixed;
-		width: 100%;
-		height: 100vh;
-		/*background: rgba(0,0,0,0.6);*/
-		z-index: -1;
-		top: 0;left: 0;
-	}
-	.header{
-		width: 100%;
-		height: 100px;
-		position: fixed;
-		top: 0;left: 0;
-	}
-	.container{
-		width: 90%;
-		max-width: 1200px;
-		margin: auto;
-	}
-	.container .btn-menu, .logo{
-		float: left;
-		line-height:100px;
-	}
-	.container .btn-menu label{
-		color: #eee;
-		font-size: 25px;
-		cursor: pointer;
-	}
-	.logo h1{
-		color: #fff;
-		font-weight: 400;
-		font-size: 22px;
-		margin-left: 10px;
-	}
-	.container .menu{
-		float: right;
-		line-height: 100px;
-	}
-	.container .menu a{
-		display: inline-block;
-		padding: 15px;
-		line-height: normal;
-		text-decoration: none;
-		color: #eee;
-		transition: all 0.3s ease;
-		border-bottom: 2px solid transparent;
-		font-size: 15px;
-		margin-right: 5px;
-	}
-	.container .menu a:hover{
-		border-bottom: 2px solid #c7c7c7;
-		padding-bottom: 5px;
-	}
-	#btn-menu{
-		display: none;
-	}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>-->
 
-	.container-menu{
-		position: absolute;
-		background: rgba(0,0,0,0.5);
-		width: 100%;
-		height: 100vh;
-		top: 0;left: 0;
-		transition: all 500ms ease;
-		opacity: 0;
-		visibility: hidden;
-	}
-	#btn-menu:checked ~ .container-menu{
-		opacity: 1;
-		visibility: visible;
-	}
-	.cont-menu{
-		width: 100%;
-		max-width: 250px;
-		background: #cf5d00;
-		height: 100vh;
-		position: relative;
-		transition: all 500ms ease;
-		transform: translateX(-100%);
-	}
-	#btn-menu:checked ~ .container-menu .cont-menu{
-		transform: translateX(0%);
-	}
-	.cont-menu nav{
-		transform: translateY(15%);
-	}
-	.cont-menu nav a{
-		display: block;
-		text-decoration: none;
-		cursor: default;
-		padding: 20px;
-		color: #ffffff;
-		border-left: 5px solid transparent;
-		transition: all 400ms ease;
-	}
-	.cont-menu nav a:hover{
-		border-left: 5px solid #c7c7c7;
-		background: #1f1f1f;
-	}
-	.cont-menu label{
-		position: absolute;
-		right: 20px;
-		padding-top: 15px;
-		top: 10px;
-		color: #fff;
-		cursor: pointer;
-		font-size: 18px;
-	}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-img{
-    width: 80px;
-    height: 80px;
-    border-radius: 50px;
-	margin-left: 80px;
-}
-.cont-menu nav p{
-	margin-left: 70px;
-	color: #c7c7c7;
-	padding: 8px;
-	cursor: pointer;
-}
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
 
-@keyframes square-animation {
- 0% {
-  left: 0;
-  top: 0;
- }
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,700&display=swap" rel="stylesheet">
 
- 10.5% {
-  left: 0;
-  top: 0;
- }
+    <!-- Ionic icons -->
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/iconproyect.jpeg">
 
- 12.5% {
-  left: 32px;
-  top: 0;
- }
-
- 23% {
-  left: 32px;
-  top: 0;
- }
-
- 25% {
-  left: 64px;
-  top: 0;
- }
-
- 35.5% {
-  left: 64px;
-  top: 0;
- }
-
- 37.5% {
-  left: 64px;
-  top: 32px;
- }
-
- 48% {
-  left: 64px;
-  top: 32px;
- }
-
- 50% {
-  left: 32px;
-  top: 32px;
- }
-
- 60.5% {
-  left: 32px;
-  top: 32px;
- }
-
- 62.5% {
-  left: 32px;
-  top: 64px;
- }
-
- 73% {
-  left: 32px;
-  top: 64px;
- }
-
- 75% {
-  left: 0;
-  top: 64px;
- }
-
- 85.5% {
-  left: 0;
-  top: 64px;
- }
-
- 87.5% {
-  left: 0;
-  top: 32px;
- }
-
- 98% {
-  left: 0;
-  top: 32px;
- }
-
- 100% {
-  left: 0;
-  top: 0;
- }
-}
-
-.loader {
- position: relative;
- width: 96px;
- height: 96px;
- transform: rotate(45deg);
- margin-left: 1130px;
- margin-top: 480px;
-}
-
-.loader-square {
- position: absolute;
- top: 0;
- left: 0;
- width: 28px;
- height: 28px;
- margin: 2px;
- border-radius: 0px;
- background: white;
- background-size: cover;
- background-position: center;
- background-attachment: fixed;
- animation: square-animation 10s ease-in-out infinite both;
-}
-
-.loader-square:nth-of-type(0) {
- animation-delay: 0s;
-}
-
-.loader-square:nth-of-type(1) {
- animation-delay: -1.4285714286s;
-}
-
-.loader-square:nth-of-type(2) {
- animation-delay: -2.8571428571s;
-}
-
-.loader-square:nth-of-type(3) {
- animation-delay: -4.2857142857s;
-}
-
-.loader-square:nth-of-type(4) {
- animation-delay: -5.7142857143s;
-}
-
-.loader-square:nth-of-type(5) {
- animation-delay: -7.1428571429s;
-}
-
-.loader-square:nth-of-type(6) {
- animation-delay: -8.5714285714s;
-}
-
-.loader-square:nth-of-type(7) {
- animation-delay: -10s;
-}
-    </style>
-	<meta charset="UTF-8">
-	<title>Inicio</title>
+    <title>Inicio</title>
 </head>
+
 <body>
-	<header class="header">
-		<div class="container">
-		<div class="btn-menu">
-			<label for="btn-menu">☰</label>
-		</div>
-			<div class="logo">
-				<h1>CURN WORKING</h1>
-			</div>
-			<nav class="menu">
-				<a href="/contacto">Contacto</a>
-				<a href="/">Salir</a>
-			</nav>
-		</div>
-	</header>
-	<div class="capa"></div>
-<input type="checkbox" id="btn-menu">
-<div class="container-menu">
-	<div class="cont-menu">
-		<nav>
-			<div class="profile-card">
-				<img src="img/logo.png" alt="logo">
-			</div>
-			<a href="#">Buscar Oferta</a>
-			<!--<p OnClick="location.href='baseA.htm'">Registrar Empleados</p>-->
-			<!--<p>Gestionar Empleados</p>-->
-			<a href="#">Mis Postulaciones</a>
-			<a href="/inicio/crud">Alertas</a>
-			<a href="/inicio/cv">Crear Hoja de Vida</a>
-			<!--<p>Registrar Pagos</p>
-			<p>Contabilidad</p>
-			<p>Facturación</p>-->
-			<a href="#">Reportes</a>
-			<p>Reporte Empleo</p>
-		</nav>
-		<label for="btn-menu">X</label>
-	</div>
-</div>
-<!--<div class="loader">
-	<div class="loader-square"></div>
-	<div class="loader-square"></div>
-	<div class="loader-square"></div>
-	<div class="loader-square"></div>
-	<div class="loader-square"></div>
-	<div class="loader-square"></div>
-	<div class="loader-square"></div>
-	</div>
-	</label>
-  </div>-->
-  <script language="JavaScript">
-	function mueveReloj(){
-		momentoActual = new Date()
-		hora = momentoActual.getHours()
-		minuto = momentoActual.getMinutes()
-		segundo = momentoActual.getSeconds()
-	
-		str_segundo = new String (segundo)
-		if (str_segundo.length == 1)
-		   segundo = "0" + segundo
-	
-		str_minuto = new String (minuto)
-		if (str_minuto.length == 1)
-		   minuto = "0" + minuto
-	
-		str_hora = new String (hora)
-		if (str_hora.length == 1)
-		   hora = "0" + hora
-	
-		horaImprimible = hora + " : " + minuto + " : " + segundo
-	
-		document.form_reloj.reloj.value = horaImprimible
-	
-		setTimeout("mueveReloj()",1000)
-	}
-	</script>
-	</head>
-	
-	<body onload="mueveReloj()">
-	
-	<form name="form_reloj">
-	<input type="text" name="reloj" size="10" style="margin-top: 569px; margin-left: 1125px; background-color : Black; color : White; font-family : Verdana, Arial, Helvetica; font-size : 15pt; text-align : center;" onfocus="window.document.form_reloj.reloj.blur()">
-	</form>
+    
+    <div class="d-flex" id="content-wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-container" class="bg-primary">
+            <div class="logo">
+                <img src="./img/iconproyect.jpeg">
+            </div>
+            <div class="menu">
+                <a href="#" class="d-block text-light p-3 border-0"><i class="icon ion-md-people lead mr-2"></i>
+                    Mis Postulaciones</a>
+
+                <a href="#" class="d-block text-light p-3 border-0"><i class="icon ion-md-apps lead mr-2"></i>
+                    Alertas</a>
+
+                <a href="cv.html" class="d-block text-light p-3 border-0"><i class="icon ion-md-person lead mr-2"></i>
+                    Crear Hoja de Vida</a>
+                <a href="reportes.html" class="d-block text-light p-3 border-0"><i class="icon ion-md-stats lead mr-2"></i>
+                    Reportes</a>
+                <a href="configuración.html" class="d-block text-light p-3 border-0"> <i class="icon ion-md-settings lead mr-2"></i>
+                    Configuración</a>
+                <a href="contacto.html" class="d-block text-light p-3 border-0"> <i class="ion-ios-phone-landscape lead mr-2"></i>
+                      Contáctanos</a>
+            </div>
+        </div>
+        <!-- Fin sidebar -->
+
+        <div class="w-100">
+
+         <!-- Navbar -->
+         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="container">
+    
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+    
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline position-relative d-inline-block my-2">
+                  <form class="form-inline position-relative d-inline-block my-2">
+                    <input class="form-control" type="search" placeholder="--------------->" aria-label="Buscar" id="searchInput">
+                    <button class="btn position-absolute btn-search" type="button" onclick="redirigir()">Buscar</button>
+                </form>
+              
+                <script>
+                    function redirigir() {
+                        // Obtiene el valor del campo de búsqueda
+                        var searchTerm = document.getElementById('searchInput').value;
+                        window.location.href = 'http://127.0.0.1:5000/' + encodeURIComponent(searchTerm);
+                    }
+                </script>
+                
+                  <!--<py-script src="public/scrap.py"> </py-script>-->
+                </form>
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img src="img/user.jpeg" class="img-fluid rounded-circle avatar mr-2"
+                      alt="https://generated.photos/" />
+                    {{us.Nombre}}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Mi perfil</a>
+                      <a class="dropdown-item" href="#">Suscripciones</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="/inicio/logout">Cerrar sesión</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <!-- Fin Navbar -->
+
+        <!-- Page Content -->
+        <div id="content" class="bg-grey w-100">
+
+              <section class="bg-light py-3">
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-lg-9 col-md-8">
+                            <h1 class="font-weight-bold mb-0">Bienvenido {{us.Nombre}}</h1>
+                            <p class="lead text-muted">Revisa tus ultimas postulaciones</p>
+                          </div>
+                          <div class="col-lg-3 col-md-4 d-flex">
+                            <!--<button class="btn btn-primary w-100 align-self-center">Descargar reporte</button>-->
+                          </div>
+                      </div>
+                  </div>
+              </section>
+
+              <section class="bg-mix py-3">
+                <div class="container">
+                    <div class="card rounded-0">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6 d-flex stat my-3">
+                                    <div class="mx-auto">
+                                        <h6 class="text-muted">Ofertas Nuevas</h6>
+                                        <h3 class="font-weight-bold">50000</h3>
+                                        <h6 class="text-success"><i class="icon ion-md-arrow-dropup-circle"></i> 50.50%</h6>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 d-flex stat my-3">
+                                    <div class="mx-auto">
+                                        <h6 class="text-muted">Empleadores</h6>
+                                        <h3 class="font-weight-bold">100</h3>
+                                        <h6 class="text-success"><i class="icon ion-md-arrow-dropup-circle"></i> 25.50%</h6>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 d-flex stat my-3">
+                                    <div class="mx-auto">
+                                        <h6 class="text-muted">Usuarios Registrados</h6>
+                                        <h3 class="font-weight-bold">2500</h3>
+                                        <h6 class="text-success"><i class="icon ion-md-arrow-dropup-circle"></i> 75.50%</h6>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 d-flex my-3">
+                                    <div class="mx-auto">
+                                        <h6 class="text-muted">Candidatos</h6>
+                                        <h3 class="font-weight-bold">500</h3>
+                                        <h6 class="text-success"><i class="icon ion-md-arrow-dropup-circle"></i> 15.50%</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </section>
+
+              <section>
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-lg-8 my-3">
+                              <div class="card rounded-0">
+                                  <div class="card-header bg-light">
+                                    <h6 class="font-weight-bold mb-0">Número de personas registradas con Curn Work</h6>
+                                  </div>
+                                  <div class="card-body">
+                                    <canvas id="myChart" width="300" height="150"></canvas>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-lg-4 my-3">
+                            <div class="card rounded-0">
+                                <div class="card-header bg-light">
+                                    <h6 class="font-weight-bold mb-0">Ofertas de Empleo Recientes</h6>
+                                </div>
+                                <div class="card-body pt-2">
+                                    <div class="d-flex border-bottom py-2">
+                                        <div class="d-flex mr-3">
+                                          <h2 class="align-self-center mb-0"><i class="icon ion-md-pricetag"></i></h2>
+                                        </div>
+                                        <div class="align-self-center">
+                                            <a href="https://www.linkedin.com/jobs/view/3737517803/?eBP=CwEAAAGLtTcmxNz0ZtbQ2Txx_D_QrG7U_M5-FfCBPV-gjVQ0D3L_uGwu9yoCzM-HicYKUEDID-DD92BGUfa6qYMncYfsSQMFKgFl1XV0F1DxJEGADjl8Lmw8q0OahHbTpj3CnCNa6yqYFNJzVw6_EO_zVXwfKoVVKyfmza0txrnvck8ycYtriCqgvaGKtQD3K-B0UxAYZ0biZojoyP6g-MBXdSnFO-Jg_Ky9wRplPyJm9mg2vDVze1qzvB0wE05ULMj1jgxi6O8mYK1alj4burK934TC9lZzgkK3buLWc0B3aYdjejDaBtXcVA6G1BtyYN8joeXwHPSHBdSB-kdfgs4mY5CQf6eF4w5oa-3SVVf5cx_TKuSuW6qPurNZQl2J_NICBsZ1hRaT470&refId=qfOV3qaPi0%2BDGMBA2IfdtA%3D%3D&trackingId=nbK9O6MB7KZesibveD%2FgZQ%3D%3D" target="_blank"> <!-- Reemplaza "URL_DE_TU_OTRA_PESTAÑA" con la URL real -->
+                                              <h6 class="d-inline-block mb-0">Backend Principal</h6><span class="badge badge-success ml-2">Nueva</span>
+                                              <small class="d-block text-muted">Se precisa Urgente</small>
+                                            </a>
+                                          </div>
+                                    </div>
+                                    <div class="d-flex border-bottom py-2">
+                                        <div class="d-flex mr-3">
+                                          <h2 class="align-self-center mb-0"><i class="icon ion-md-pricetag"></i></h2>
+                                        </div>
+                                        <div class="align-self-center">
+                                            <a href="https://www.linkedin.com/jobs/view/3748355134/?eBP=JOB_SEARCH_ORGANIC&refId=qfOV3qaPi0%2BDGMBA2IfdtA%3D%3D&trackingId=UEtrHCDPgUhfUjdQE1j68A%3D%3D" target="_blank"> <!-- Reemplaza "URL_DE_TU_OTRA_PESTAÑA" con la URL real -->
+                                              <h6 class="d-inline-block mb-0">Técnico Sistemas y redes</h6><span class="badge badge-success ml-2">Nueva</span>
+                                              <small class="d-block text-muted">Se precisa Urgente</small>
+                                            </a>
+                                          </div>
+                                    </div>
+                                    <div class="d-flex border-bottom py-2">
+                                        <div class="d-flex mr-3">
+                                          <h2 class="align-self-center mb-0"><i class="icon ion-md-pricetag"></i></h2>
+                                        </div>
+                                        <div class="align-self-center">
+                                            <a href="https://www.linkedin.com/jobs/search/?currentJobId=3741918767&geoId=100876405&location=Colombia&origin=JOB_SEARCH_PAGE_SEARCH_BUTTON&refresh=true" target="_blank"> <!-- Reemplaza "URL_DE_TU_OTRA_PESTAÑA" con la URL real -->
+                                              <h6 class="d-inline-block mb-0">Arquitecto de Software Java</h6><span class="badge badge-success ml-2">Nueva</span>
+                                              <small class="d-block text-muted">Se precisa Urgente</small>
+                                            </a>
+                                          </div>
+                                    </div>
+                                    <div class="d-flex border-bottom py-2">
+                                        <div class="d-flex mr-3">
+                                          <h2 class="align-self-center mb-0"><i class="icon ion-md-pricetag"></i></h2>
+                                        </div>
+                                        <div class="align-self-center">
+                                            <a href="https://www.linkedin.com/jobs/view/3754366051/?eBP=CwEAAAGLtTcmxBm1mPJzRkb2R374XXFZoMKHCWNGHQxaKRS9b_mStrnxz5sszcvl23i3jrzcgy9KnKT-vXLCh9_T8lVT6bMHsA6KGGcNJDI2xsrc4mgJUt2Z5Rd5Lhz4Ww0w3G6-M3_bqre0fKYybqOCyZ4nEdrdba3KvH_9aZ91IiJ3RXXerQdwAs5nvRwRe5Bg-Q6-QzxU9j_deZFVmLrLYTfKA6fj6Pk9FngHW_04t5JTYvdCUA2_9mUNZs-sVUT0oxrNRlcB9nqd7uyzSA53TgiHWET34YMy1Ph_sg4OZOmBJtT1HZ2E5-NDUc4qC34KOc6BDL7mmSq2nJB-vaMmgF3_9SBGPITJw1P4XWVWLt8CIL2eBGbTKGSHz_YmIUC4Xd4&refId=qfOV3qaPi0%2BDGMBA2IfdtA%3D%3D&trackingId=Z0Lbvg6vOjMDXLqyHr7%2BOw%3D%3D" target="_blank"> <!-- Reemplaza "URL_DE_TU_OTRA_PESTAÑA" con la URL real -->
+                                              <h6 class="d-inline-block mb-0">Consultor comercial superior</h6><span class="badge badge-success ml-2">Nueva</span>
+                                              <small class="d-block text-muted">Se precisa Urgente</small>
+                                            </a>
+                                          </div>
+                                    </div>
+                                    <div class="d-flex border-bottom py-2 mb-3">
+                                        <div class="d-flex mr-3">
+                                          <h2 class="align-self-center mb-0"><i class="icon ion-md-pricetag"></i></h2>
+                                        </div>
+                                        <div class="align-self-center">
+                                            <a href="https://www.linkedin.com/jobs/view/3757130292/?eBP=CwEAAAGLtTcmxEGW4Eei2G3mJQZXCSXIJsvOUF_tNBUwfJin2lIFgDY5-daLaKyCnbdYgEJYR6BI4RvkiYyXNSE0dxZlE6fnpBx0gwSdWfu2Ho4Nm0Wc-3lhvaBdrTYRKb6PVCrcckuI5ZfnQoOZPA-EDp3Czp3UaGi_EY_RWEoicjkbs7aZa1UrZMaFxZsq-q0dvld_LGJRtdE1CCXOfwE0w5ap8kcSCHeZXjxdUg3RMAOTel3Ues_aN3anFdOgECE3WvlVDYF9itpsL5oPCKl8C_vQV7X8vUeTMjNAzd6YCEK7eXTbYV5k52Y4ajLDbKehDMggzCgKtr5xWfKzY_5IDfczX5RpTyN2iXE3wvEgpo4CXy9dx2p64zPVKzCdhrpZW0Y&refId=qfOV3qaPi0%2BDGMBA2IfdtA%3D%3D&trackingId=EkD7F4%2FWZLmBWDqyZPyi7A%3D%3D" target="_blank"> <!-- Reemplaza "URL_DE_TU_OTRA_PESTAÑA" con la URL real -->
+                                              <h6 class="d-inline-block mb-0">Agente Bilingüe</h6><span class="badge badge-success ml-2">Nueva</span>
+                                              <small class="d-block text-muted">Se precisa Urgente</small>
+                                            </a>
+                                          </div>
+                                    </div>
+                                    <button class="btn btn-primary w-100" id="verTodasButton">Ver todas</button>
+                                                <script>
+                                                    document.getElementById("verTodasButton").addEventListener("click", function() {
+                                                        window.open('https://www.linkedin.com/jobs/search/?currentJobId=3732456070&geoId=100876405&location=Colombia&origin=JOB_SEARCH_PAGE_SEARCH_BUTTON&refresh=true', '_blank');
+                                                    });
+                                                </script>     
+                                        <script src="script-index.js"></script>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+              </section>
+
+        </div>
+
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+        <script>
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, { 
+                type: 'bar',
+                data: {
+                    labels: ['Ago 2023', 'Sep 2023', 'Oct 2023', 'Nov 2023'],
+                    datasets: [{
+                        label: 'Nuevos usuarios',
+                        data: [50, 100, 150, 200],
+                        backgroundColor: [
+                            '#12C9E5',  
+                            '#12C9E5',
+                            '#12C9E5',
+                            '#12C9E5'
+                        ],
+                        maxBarThickness: 30,
+                        maxBarLength: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+            </script>
 </body>
+
 </html>

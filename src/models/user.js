@@ -5,7 +5,13 @@ const saltaround=10;
 const useresquema= new mongo.Schema({
     Nombre: {type:String, required:true},
     correo:{type:String, required:true, unique:true},
-    contraseña: {type:String, require:true}
+    contraseña: {type:String, require:true},
+    rol:{
+    type:String,
+    enum:['usuario','admin'],
+    default:'usuario'
+    }
+
 },{
     timestamps:true
 });

@@ -3,20 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Detalles del Usuario</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .cuadro {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #007bff;
+        }
+
+        a {
+            color: #28a745;
+            margin-right: 10px;
+        }
+
+        form {
+            display: inline;
+        }
+
+        button {
+            color: #dc3545;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     {{#muser}}
         <div class="cuadro">
-        <h1>{{Nombre}}</h1>
-        <h2>{{correo}}</h2>
+            <h1>{{Nombre}}</h1>
+            <h2>{{correo}}</h2>
         </div>
-        <form action="/inicio/crud/delete/{{_id}}?_method=DELETE" method="POST">
+        <a href="/inicio/crud/edit/{{_id}}" class="btn btn-primary">Editar</a>
+        <form action="/inicio/crud/delete/{{_id}}?_method=DELETE" method="POST" class="d-inline">
             <input type="hidden" name="_method" value="DELETE"> 
-            <button type="submit">Eliminar</BUtton>
+            <button type="submit" class="btn btn-link">Eliminar</button>
         </form>
-
-
     {{/muser}}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
