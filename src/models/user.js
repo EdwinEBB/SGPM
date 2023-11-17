@@ -10,6 +10,9 @@ const useresquema= new mongo.Schema({
     type:String,
     enum:['usuario','admin'],
     default:'usuario'
+    },
+    Cv:{
+        type:mongo.Schema.Types.ObjectId, ref:'cv'
     }
 
 },{

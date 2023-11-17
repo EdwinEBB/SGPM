@@ -1,11 +1,23 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify,redirect
+import requests
 from googlesearch import search
 
 app = Flask(__name__)
+node_server_uri="http://localhost:8000"
+
+
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/patra')
+def patra():
+    response= requests.get(f'{node_server_uri}/inicio')
+    
+    return redirect(f'{node_server_uri}/inicio',code=response.status_code)
+
 
 @app.route('/search', methods=['POST'])
 def search_results():

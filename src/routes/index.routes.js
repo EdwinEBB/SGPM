@@ -7,7 +7,6 @@ const globo= new notifier.WindowsBalloon({
     withFallback:false,
     customPath:undefined
 });
-
 rutas.use(configurarpassport());
 
 const {isAuthenticated}=require('../helpers/Autenticar');
@@ -121,6 +120,7 @@ rutas.put('/inicio/crud/edit-user/:id',isAuthenticated, async (req,res)=>{
         type:'info'
     })
 })
+
 
 
 

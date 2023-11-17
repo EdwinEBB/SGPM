@@ -7,11 +7,13 @@ const morgan=require('morgan');
 const moveride=require('method-override');
 const session=require('express-session');
 const passport=require('passport');
-const {spawn}=require('child_process');
+const http=require('http');
 require('./config/passport');
 
 //setting
 app.set('port', process.env.PORT || 8000);
+
+//implementación del archivo de python
 
 
 
@@ -43,7 +45,6 @@ app.engine('html', motor.mustache);
 app.set('view engine', 'html');
 //routes
 app.use(rutas);
-
 
 
 
