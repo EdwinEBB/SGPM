@@ -24,15 +24,6 @@ rutas.get('/contacto',(req,res)=>{
     res.render('contacto');
 })
 
-rutas.get('/obtener',isAuthenticated,async(req,res)=>{
-    if (req.isAuthenticated() && req.user) {
-        const userId = req.user._id;
-        console.log(userId);
-    
-        // Utiliza userId para hacer una búsqueda en la base de datos u otras operaciones
-       const us=await user.findById(userId);
-}})
-
 rutas.get('/inicio',isAuthenticated , async (req,res)=>{
     if (req.isAuthenticated() && req.user) {
         const userId = req.user._id;
@@ -78,6 +69,14 @@ rutas.get('/inicio/cv/cv2', isAuthenticated ,(req,res)=>{
 
 rutas.get('/inicio/cv/cv2/cv3', isAuthenticated ,(req,res)=>{
     res.render('cv3')
+})
+
+rutas.get('/inicio/reportes',isAuthenticated,(req,res)=>{
+    res.render('reportes');
+})
+
+rutas.get('/inicio/configuracion',isAuthenticated,(req,res)=>{
+    res.render('configuración');
 })
 
 rutas.get('/inicio/siesadmin',isAuthenticated,(req,res)=>{

@@ -1,45 +1,60 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador de empleo</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <title>Búsqueda de Empleo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card mt-5">
-                    <div class="card-body">
-                        <h1 class="text-center">Ingrese la oferta laboral que desea buscar</h1>
-                        <form id="searchForm" action="/search" method="post">
-                            <div class="form-group">
-                                <label for="query">Buscar:</label>
-                                <input type="text" class="form-control" id="query" name="query" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block" onclick="showLoadingMessage()">Buscar</button>
-                            
-                            <!-- Botón de Regreso -->
-                            <a href="/patra" class="btn btn-secondary btn-block mt-3">Regresar</a>
-                        </form>
-                    </div>
-                </div>
+    <div class="container mt-5">
+        <h1>¡Bienvenido a Curn Work!</h1>
+        <form action="/search" method="post" id="searchForm">
+            <div class="form-group">
+                <label for="search_query">Ingrese la oferta laboral que desea buscar:</label>
+                <input type="text" class="form-control" id="search_query" name="search_query" required>
             </div>
-        </div>
+            <button type="button" class="btn btn-primary" onclick="showLoadingMessage()">Buscar</button>
+        </form>
+        {% if job_links %}
+            <div class="d-flex flex-wrap mt-4">
+                {% for link in job_links %}
+                    <div class="card mr-3 mb-3" style="width: 48%;">
+                        <div class="card-body">
+                            <h5 class="card-title">Oferta de Trabajo</h5>
+                            <p class="card-text">Enlace: <a href="{{ link }}">{{ link }}</a></p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <!--<p>No se encontraron resultados de ofertas de trabajo.</p>-->
+        {% endif %}
+        
+        <!-- Agregar sección para mostrar resultados de la búsqueda actualizada -->
+        {% if updated_job_links %}
+            <div class="d-flex flex-wrap mt-4">
+                {% for link in updated_job_links %}
+                    <div class="card mr-3 mb-3" style="width: 48%;">
+                        <div class="card-body">
+                            <h5 class="card-title">Oferta de Trabajo Actualizada</h5>
+                            <p class="card-text">Enlace: <a href="{{ link }}">{{ link }}</a></p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Agregar formulario y botón para la búsqueda actualizada -->
+        <form action="/update" method="post" id="updateForm">
+            <input type="hidden" name="search_query" value="{{ search_query }}">
+            <button type="button" class="btn btn-success" onclick="showLoadingMessageForUpdate()">Actualizar</button>
+        </form>
+        
+        <a href="/patra" class="btn btn-secondary btn-block mt-3">Regresar</a>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-    <!-- SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
     <script>
         function showLoadingMessage() {
             Swal.fire({
@@ -47,13 +62,27 @@
                 icon: 'info',
                 allowOutsideClick: false,
                 showConfirmButton: false,
-                timer: 60000 // 1 minuto
+                timer: 3000 // 3 segundos
             }).then(() => {
                 document.getElementById('searchForm').submit();
             });
         }
+
+        function showLoadingMessageForUpdate() {
+            Swal.fire({
+                title: 'Estamos buscando nuevas ofertas para ti',
+                icon: 'info',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                timer: 3000 // 3 segundos
+            }).then(() => {
+                document.getElementById('updateForm').submit();
+            });
+        }
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
-
-

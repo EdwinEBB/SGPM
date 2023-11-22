@@ -81,7 +81,8 @@ app.post('/autenticar', passport.authenticate('local',{
     successRedirect:'/inicio',
     failureFlash:true
 })
-    /*const us={
+    
+/*const us={
         correo:req.body.correo,
         contraseña:req.body.contraseña
     };
