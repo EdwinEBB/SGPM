@@ -1,29 +1,37 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Simulación de datos (puedes obtener estos datos de tu servidor)
     const userData = {
         totalUsers: 2500,
-        // Agrega más datos según sea necesario
     };
 
     const jobData = {
         totalJobs: 50000,
-        // Agrega más datos según sea necesario
     };
 
     const candidateData = {
         totalCandidates: 500,
-        // Agrega más datos según sea necesario
     };
 
     const employerData = {
         totalEmployers: 100,
-        // Agrega más datos según sea necesario
     };
 
-    // Actualiza las estadísticas en el informe
     document.getElementById("totalUsers").innerText = userData.totalUsers;
     document.getElementById("totalJobs").innerText = jobData.totalJobs;
     document.getElementById("totalCandidates").innerText = candidateData.totalCandidates;
     document.getElementById("totalEmployers").innerText = employerData.totalEmployers;
-    // Actualiza más elementos según sea necesario
+
+    const pieChartData = {
+        labels: ["Usuarios Registrados", "Ofertas de Trabajo", "Candidatos", "Empleadores"],
+        datasets: [{
+            data: [userData.totalUsers, jobData.totalJobs, candidateData.totalCandidates, employerData.totalEmployers],
+            backgroundColor: ["#3498db", "#e74c3c", "#2ecc71", "#f39c12"],
+        }],
+    };
+
+    const pieChartContext = document.getElementById("pieChart").getContext("2d");
+
+    const pieChart = new Chart(pieChartContext, {
+        type: "pie",
+        data: pieChartData,
+    });
 });

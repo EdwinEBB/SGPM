@@ -268,3 +268,18 @@ body {
     opacity: 0;
     visibility: hidden;
 }
+
+.Boton{
+    padding: 1rem;
+    background-color: #ff5900;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    color: white;
+    font-family: Helvetica;
+    transition: 0.5s;
+}
+
+.Boton:hover{
+    background-color: #c04d00;
+}

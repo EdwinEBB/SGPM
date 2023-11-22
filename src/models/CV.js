@@ -1,35 +1,52 @@
 const mongo=require('mongoose');
+const user=require('../models/user')
 const schema=mongo.Schema;
 
 const CVschema=new schema({
+
     nombre:{
-        Type:String,
-        require:true
+        type:String,
+        require:true,
     },
     apellidos:{
-        Type:String,
-        require:true
+        type:String,
+        require:true,
     },
     DNI:{
-        Type:String,
-        require:true
+        type:Number,
+        require:true,
     },
     direccion:{
-        Type:String,
-        require:true
+        type:String,
+        require:true,
     },
     telefono:{
-        Type:String,
-        require:true
+        type:Number,
+        require:true,
     },
     ftperfil:{
-        Type:Image,
-        require:false
+        type:String,
     },
+    usuario:{
+        type:mongo.Schema.Types.ObjectId,
+        ref:'users',
+        unique:true
+    },
+    estudios:{
+        Tipo:{
+            type:String,
+        },
+        nombretitulo:{
+            type:String
+        },
+        sobrel:{
+            type:String
+        }
+    }
     
 },
 {
-    timestamps:true
+    timestamps:true,
 });
 
 

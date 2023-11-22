@@ -77,9 +77,9 @@ app.post('/register',(req,res)=>{
 });
 
 app.post('/autenticar', passport.authenticate('local',{
-    failureRedirect:'/login',
+    failureRedirect:'/verficarcamposaut',
     successRedirect:'/inicio',
-    failureFlash:true
+    failureFlash:false
 })
     
 /*const us={

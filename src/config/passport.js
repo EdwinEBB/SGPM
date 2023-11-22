@@ -6,32 +6,50 @@ const notifi=require('node-notifier');
 const mongoose=require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
 
+var globo= new notifi.WindowsBalloon({
+    withFallback:false,
+    customPath:undefined
+});
 
 passport.use('local',new localport({
     usernameField: 'correo',
     passwordField: 'contraseña'
 }, async (correo,contraseña,done)=>{
 
+    if(correo=="" || contraseña==""){
+        
+    }
+
     //capturar la pinche contraseña
     const userr= await Usuario.findOne({correo:correo});
     if(!userr){
-        return done(null,false, notifi.notify({
-            title:"Error",
-            message:"Usuario no encontrado",
-            type:'warn'
+        return done(null,false, globo.notify({
+            title:'Usuario no encontrado',
+                message:"No se encontro el usuario"+userr.Nombre,
+                time:5000,
+                sound:true,
+                wait:false,
+                type:'warn'
         }));
     }else{
         //captura de contraseña
         const verificajoder= await bc.compare(contraseña, userr.contraseña);
         if(verificajoder){
-            return done(null,userr,notifi.notify({
-                title:"inicio de sesión completado",
-                message:"Bienvenido de vuelta "+userr.Nombre
+            return done(null,userr,globo.notify({
+                title:'Incio de sesión completado',
+                message:"Bienvenido de vuelta "+userr.Nombre,
+                time:5000,
+                sound:true,
+                wait:false,
+                type:'info'
             }));
         }else{
-            return done(null,false, notifi.notify({
-                title:"ERROR",
-                message:"Contraseña incorrecta",
+            return done(null,false, globo.notify({
+                title:'ERROR',
+                message:"La contraseña que has digitado es incorrecta",
+                time:5000,
+                sound:true,
+                wait:false,
                 type:'warn'
             }));
         }

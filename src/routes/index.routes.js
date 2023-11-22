@@ -1,6 +1,7 @@
 const express=require('express');
 const rutas=express.Router();
 const user= require('../models/user');
+const HV= require('../models/cv');
 const configurarpassport=require('../config/passport');
 const notifier=require('node-notifier');
 const globo= new notifier.WindowsBalloon({
@@ -19,6 +20,18 @@ rutas.get('/login',(req,res)=>{
     res.render('login')
 })
 
+rutas.get('/verficarcamposaut',(req,res)=>{
+    globo.notify({
+        title:'Campos vacios',
+        message:'No pueden quedar campos vacios',
+        time:1000,
+        timeout:1,
+        sound:true,
+        wait:true,
+        type:'warn'
+    });
+    res.redirect('/login')
+})
 
 rutas.get('/contacto',(req,res)=>{
     res.render('contacto');
@@ -33,10 +46,6 @@ rutas.get('/inicio',isAuthenticated , async (req,res)=>{
        const us=await user.findById(userId);
        res.render('inicio2',{us});
     }
-   /* const useride= req.query.userid;
-    const user2= await useride;
-    console.log(user2);
-    res.send(`${user2}`);*/
 
 })
 
@@ -63,19 +72,33 @@ rutas.get('/inicio/logout', isAuthenticated, (req,res)=>{
 rutas.get('/inicio/cv', isAuthenticated,(req,res)=>{
     res.render('cv')
 })
+
+rutas.post('/inicio/cv/veri1',isAuthenticated, async(req,res)=>{
+    const datos=req.body;
+    const user=datos.usuario=req.user._id
+    const CV=new HV(datos);
+    console.log(CV);
+    await CV.save();
+    res.redirect('/inicio/cv/cv2')
+})
+
 rutas.get('/inicio/cv/cv2', isAuthenticated ,(req,res)=>{
     res.render('cv2')
+})
+
+rutas.get('/inicio/cv/cv2/cv3/verifi3',isAuthenticated,(req,res)=>{
+    res.send("Verificación de cv3=careverga tercer")
 })
 
 rutas.get('/inicio/cv/cv2/cv3', isAuthenticated ,(req,res)=>{
     res.render('cv3')
 })
 
-rutas.get('/inicio/reportes',isAuthenticated,(req,res)=>{
+rutas.get('/inicio/reportes', isAuthenticated ,(req,res)=>{
     res.render('reportes');
 })
 
-rutas.get('/inicio/configuracion',isAuthenticated,(req,res)=>{
+rutas.get('/inicio/configuracion', isAuthenticated ,(req,res)=>{
     res.render('configuración');
 })
 

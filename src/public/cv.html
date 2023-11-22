@@ -81,30 +81,32 @@ button {
 
     <h1 class="txt-head"> DATOS PERSONALES </h1>
                         <div class="container">
+<form action="/inicio/cv/veri1" method="post">
  <label for="">  </label>
-        <input class="controls" type="text" name="nom" id="nom" placeholder="Escribe tú nombre." required ><!--pedir datos del usuario -->
+        <input class="controls" type="text" name="nombre" id="nombre" placeholder="Escribe tú nombre." required ><!--pedir datos del usuario -->
             <br>
             
         <label for="">  </label>
-        <input class="controls" type="text" name="apl" id="apl" placeholder="Escribe tús apellidos."  required><!-- pedir datos del usuario -->
+        <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Escribe tús apellidos."  required><!-- pedir datos del usuario -->
             <br>
          <label for="">  </label>
-        <input class="controls" type="text" name="ID" id="ID" placeholder="Escribe tú ID."  pattern="[0-9]{1,10}" maxlength="10" required ><!--pedir datos del usuario -->
+        <input class="controls" type="text" name="DNI" id="DNI" placeholder="Escribe tú ID."  pattern="[0-9]{1,10}" maxlength="10" required ><!--pedir datos del usuario -->
             <br>
             
         <label for="">  </label>
-        <input class="controls" type="text" name="dir" id="dir" placeholder="Escribe tú Dirección."  required><!-- pedir datos del usuario -->
+        <input class="controls" type="text" name="direccion" id="direccion" placeholder="Escribe tú Dirección."  required><!-- pedir datos del usuario -->
             <br>
          <label for=""> </label>
-        <input class="controls" type="text" name="Tel" id="Tel" placeholder="Escribe tú Teléfono." pattern="[0-9]{1,10}" maxlength="10" required ><!--pedir datos del usuario -->
+        <input class="controls" type="text" name="telefono" id="telefono" placeholder="Escribe tú Teléfono." pattern="[0-9]{1,10}" maxlength="10" required ><!--pedir datos del usuario -->
             <br>
             
         <label for="">  </label>
-        <input class="controls" type="email" name="Cor" id="Cor" placeholder="Escribe tú Correo." ><!-- pedir datos del usuario -->
+        <input class="controls" type="email" name="correo" id="Correo" placeholder="Escribe tú Correo." ><!-- pedir datos del usuario -->
             <br>
 <p><input type="checkbox" name="sisas" value="1" required>Estoy de acuerdo con los <a href="#"> Terminos y condiciones </a></p>
 <br>
-<button type="button" OnClick="location.href='/inicio/cv/cv2'"><span></span>Siguiente</button>
+<button type="submit" ><span></span>Siguiente</button>
+</form>
 <button type="button" OnClick="location.href='/inicio'"><span></span>Regresar</button>
         <br>
         

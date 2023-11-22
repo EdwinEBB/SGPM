@@ -9,11 +9,8 @@ const useresquema= new mongo.Schema({
     rol:{
     type:String,
     enum:['usuario','admin'],
-    default:'usuario'
+    default:'usuario',
     },
-    Cv:{
-        type:mongo.Schema.Types.ObjectId, ref:'cv'
-    }
 
 },{
     timestamps:true

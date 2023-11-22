@@ -3,9 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../public/static/reportst.css">
     <link rel="shortcut icon" href="img/iconproyect.jpeg">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Reportes de Actividad General</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.stats-container {
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+span {
+    font-weight: bold;
+    color: #007BFF;
+}
+
+button {
+    margin-left: 550px;
+    margin-top: 0px;
+    margin: 1 50px;
+    position: relative;
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    background: #dcdcdc;
+    color: rgb(51, 15, 0);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: .3s;
+    height: 40px;
+    width: 180px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+button span{
+    position: absolute;
+    width: 225px;
+    height: 100px;
+    border-radius: 50%;
+    top: -50%;
+    left: -100%;
+    transition: .3s;
+}
+button:hover span{
+    left: -10%;
+}
+button:hover{
+    color: white;
+    background: rgb(255, 136, 0);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .7);
+}
+    </style>
 </head>
 <body>
 
@@ -34,13 +105,54 @@
             <h2>Empleadores</h2>
             <p>Total de Empleadores: <span id="totalEmployers">0</span></p>
             <!-- Agrega más estadísticas según sea necesario -->
+            <div style="width: 300px; height: 300px; margin-left: 260px;">
+                <canvas id="pieChart" width="200" height="200" margin-left: 260px></canvas>
+            </div>
         </div>
 
         <!-- Puedes agregar más contenedores para otras estadísticas -->
 
     </div>
     <button type="button" OnClick="location.href='/inicio'"><span></span>Regresar</button>
-    <script src="report.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const userData = {
+        totalUsers: 2500,
+    };
+
+    const jobData = {
+        totalJobs: 50000,
+    };
+
+    const candidateData = {
+        totalCandidates: 500,
+    };
+
+    const employerData = {
+        totalEmployers: 100,
+    };
+
+    document.getElementById("totalUsers").innerText = userData.totalUsers;
+    document.getElementById("totalJobs").innerText = jobData.totalJobs;
+    document.getElementById("totalCandidates").innerText = candidateData.totalCandidates;
+    document.getElementById("totalEmployers").innerText = employerData.totalEmployers;
+
+    const pieChartData = {
+        labels: ["Usuarios Registrados", "Ofertas de Trabajo", "Candidatos", "Empleadores"],
+        datasets: [{
+            data: [userData.totalUsers, jobData.totalJobs, candidateData.totalCandidates, employerData.totalEmployers],
+            backgroundColor: ["#3498db", "#e74c3c", "#2ecc71", "#f39c12"],
+        }],
+    };
+
+    const pieChartContext = document.getElementById("pieChart").getContext("2d");
+
+    const pieChart = new Chart(pieChartContext, {
+        type: "pie",
+        data: pieChartData,
+    });
+});
+    </script>
 </body>
 </html>
 
