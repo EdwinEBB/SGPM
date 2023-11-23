@@ -29,8 +29,7 @@ const CVschema=new schema({
     },
     usuario:{
         type:mongo.Schema.Types.ObjectId,
-        ref:'users',
-        unique:true
+        ref:'users'
     },
     estudios:{
         Tipo:{

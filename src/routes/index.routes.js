@@ -75,7 +75,7 @@ rutas.get('/inicio/cv', isAuthenticated,(req,res)=>{
 
 rutas.post('/inicio/cv/veri1',isAuthenticated, async(req,res)=>{
     const datos=req.body;
-    const user=datos.usuario=req.user._id
+    datos.usuario=req.user._id
     const CV=new HV(datos);
     console.log(CV);
     await CV.save();
@@ -86,13 +86,21 @@ rutas.get('/inicio/cv/cv2', isAuthenticated ,(req,res)=>{
     res.render('cv2')
 })
 
-rutas.get('/inicio/cv/cv2/cv3/verifi3',isAuthenticated,(req,res)=>{
-    res.send("Verificación de cv3=careverga tercer")
-})
+
 
 rutas.get('/inicio/cv/cv2/cv3', isAuthenticated ,(req,res)=>{
     res.render('cv3')
 })
+
+rutas.post('/inicio/cv/cv2/cv3/verifi3',isAuthenticated,async(req,res)=>{
+    const datos3=req.body;
+    const usu= await user.findById(req.user._id);
+    const HVC= await HV.findOne({usuario:usu._id});
+    HVC.estudios=({Tipo:datos3.Tipo,nombretitulo:datos3.nombretitulo,sobrel:datos3.sobrel});
+    await HVC.save();
+    res.redirect('/inicio')
+    
+ })
 
 rutas.get('/inicio/reportes', isAuthenticated ,(req,res)=>{
     res.render('reportes');

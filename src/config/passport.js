@@ -16,16 +16,13 @@ passport.use('local',new localport({
     passwordField: 'contraseña'
 }, async (correo,contraseña,done)=>{
 
-    if(correo=="" || contraseña==""){
-        
-    }
 
     //capturar la pinche contraseña
     const userr= await Usuario.findOne({correo:correo});
     if(!userr){
         return done(null,false, globo.notify({
             title:'Usuario no encontrado',
-                message:"No se encontro el usuario"+userr.Nombre,
+                message:"No se encontro el usuario digitado",
                 time:5000,
                 sound:true,
                 wait:false,
