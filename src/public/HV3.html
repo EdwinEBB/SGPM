@@ -96,20 +96,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <div class="card">
             <span class="title">Ingresa tus Niveles de Estudio</span>
-            <form action="/inicio/cv/cv2/cv3/verifi3" method="post" class="form">
+            <form action="/inicio/cvedit3/cveditt3?_method=PUT" method="POST" class="form">
+                <input type="hidden" name="_method" value="PUT">
               <div class="group">
-              <input placeholder="" type="text" id="Tipo" name="Tipo" required="">
+              <input placeholder="" type="text" id="Tipo" value="{{HV33.estudios.Tipo}}" name="Tipo" required="">
               <label for="name"></label>
               </div>
               <div class="group">
-              <input placeholder="" type="text" id="nombretitulo" name="nombretitulo" required="">
+              <input placeholder="" type="text" id="nombretitulo" value="{{HV33.estudios.nombretitulo}}" name="nombretitulo" required="">
               <label for="email"></label>
               </div>
               <div class="group">
-              <textarea placeholder="" id="sobrel" name="sobrel" rows="5" required=""></textarea>
+              <textarea placeholder="" id="sobrel" value="{{HV33.estudios.sobrel}}" name="sobrel" rows="5"  required=""></textarea>
               <label for="comment">Sobre ti</label>
               </div>
-              <button type="submit"><span></span>Crear Hoja de Vida</button>
+              <input type="hidden" name="_method" value="PUT">
+              <button type="submit"><span></span>Actualizar Hoja de vida</button>
             </form>
           </div>
           

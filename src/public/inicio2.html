@@ -35,10 +35,18 @@
                 <img src="./img/iconproyect.jpeg">
             </div>
             <div class="menu">
-                <a href="/inicio/cv" class="d-block text-light p-3 border-0"><i class="icon ion-md-person lead mr-2"></i>
-                    Crear Hoja de Vida</a>
+                <a href="/inicio/vericv" class="d-block text-light p-3 border-0"><i class="icon ion-md-person lead mr-2"></i>
+                    {{#hoja}}
+                     Editar hoja de vida
+                    {{/hoja}}
+                    {{^hoja}}
+                      Crear hoja de vida
+                    {{/hoja}} </a>
+                {{#rol}}
                 <a href="/inicio/reportes" class="d-block text-light p-3 border-0"><i class="icon ion-md-stats lead mr-2"></i>
                     Reportes</a>
+                    <a href="/inicio/crud" class="d-block text-light p-3 border-0"><i class="ion-ios-create lead mr-2"></i>Gestión de usuarios</a>
+                {{/rol}}
                 <a href="/inicio/configuracion" class="d-block text-light p-3 border-0"> <i class="icon ion-md-settings lead mr-2"></i>
                     Configuración</a>
                 <a href="/contacto" class="d-block text-light p-3 border-0"> <i class="ion-ios-phone-landscape lead mr-2"></i>

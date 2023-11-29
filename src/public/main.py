@@ -44,11 +44,12 @@ def search_jobs(query, update=False):
 def index():
     return render_template('index.html')
 
-
-@app.route('/patra')
+        
+    
+@app.route('/patra', methods=['GET'])
 def patra():
     response=requests.get(f'{node_server_uri}/inicio')
-    return redirect(f'{node_server_uri}/inicio')
+    return redirect(f'{node_server_uri}/inicio',code=302)
 
 @app.route('/search', methods=['POST'])
 def search():

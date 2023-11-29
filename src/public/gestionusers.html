@@ -6,56 +6,129 @@
     <title>Detalles del Usuario</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body {
-            background-color: #f8f9fa;
-            padding: 20px;
+
+        :root{
+            --editar:#016BFB;
+            --editar2:#044DA4;
+            --cuadro:#53A0FB;
+            --eliminar:#D71E1E;
+            --eliminar2:#A10808;
+            --patra:#DD7320;
+            --patra2:#C85801;
+        }
+
+        .contenedor {
+            display: flex;
+            flex-wrap: wrap;
         }
 
         .cuadro {
-            background-color: #ffffff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1, h2 {
-            color: #007bff;
-        }
-
-        a {
-            color: #28a745;
-            margin-right: 10px;
-        }
-
-        form {
-            display: inline;
-        }
-
-        button {
-            color: #dc3545;
-            background-color: transparent;
+            width: 22rem; /* Ancho fijo de cada caja */
+            height: 14rem; /* Altura fija de cada caja (puedes ajustar según tus necesidades) */
+            margin: 0.7rem;
+            background-color: var(--cuadro); /* Color de fondo de cada caja */
+            color: black; /* Color del texto dentro de cada caja */
+            text-align: center; /* Alineación del texto dentro de cada caja */
             border: none;
-            cursor: pointer;
+            border-radius: 20px;
         }
 
-        button:hover {
-            text-decoration: underline;
+        .boton{
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            width: 100px;
+            height: 40px;
+            background-color:var(--editar);
+            margin-top: 40px;
+            font-family: Helvetica;
+            font-weight: 600;
+            transition: 0.3s;
         }
+
+        .boton:hover{
+            transform: translateY(-3px);
+            background-color:var(--editar2) ;
+        }
+
+        .boton:focus{
+            outline: none;
+        }
+
+        .boton2{
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            width: 100px;
+            height: 40px;
+            background-color:var(--eliminar);
+            margin-top: 40px;
+            font-family: Helvetica;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .boton2:hover{
+            transform: translateY(-3px);
+            background-color: var(--eliminar2);
+        }
+
+        .boton2:focus{
+            outline: none;
+        }
+
+       .nombre{
+        font-family: Helvetica;
+        font-size: 35px;
+       }
+
+       .correo{
+        font-family: Helvetica;
+        font-size: 20px;
+       }
+
+       .patra{
+        border: none;
+        border-radius: 10px;
+        background-color: var(--patra);
+        font-family: Helvetica;
+        transition: 0.3s;
+        padding: 10px;
+        font-size: 25px;
+        margin-left: 42rem;
+        text-transform: uppercase;
+       }
+
+       .patra:hover{
+        transform: translateY(-3px);
+        background-color: var(--patra2);
+       }
+
+       .patra:focus{
+        outline: none;
+        transform: scale(0.9);
+       }
+
     </style>
 </head>
 <body>
+    <div class="contenedor">
     {{#muser}}
-        <div class="cuadro">
-            <h1>{{Nombre}}</h1>
-            <h2>{{correo}}</h2>
-        </div>
-        <a href="/inicio/crud/edit/{{_id}}" class="btn btn-primary">Editar</a>
-        <form action="/inicio/crud/delete/{{_id}}?_method=DELETE" method="POST" class="d-inline">
-            <input type="hidden" name="_method" value="DELETE"> 
-            <button type="submit" class="btn btn-link">Eliminar</button>
-        </form>
+        
+            <div class="cuadro">
+                <p class="nombre">{{Nombre}}</p>
+                <p class="correo">{{correo}}</p>
+            
+            <a href="/inicio/crud/edit/{{_id}}" class=""><button class="boton">Editar</button></a>
+            <form action="/inicio/crud/delete/{{_id}}?_method=DELETE" method="POST" class="d-inline">
+                <input type="hidden" name="_method" value="DELETE"> 
+                <button type="submit" class="boton2">Eliminar</button>
+            </form>
+            </div>
     {{/muser}}
+    </div>
+
+    <a href="/inicio"><button class="patra">Regresar</button></a>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>

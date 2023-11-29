@@ -40,11 +40,12 @@ rutas.get('/contacto',(req,res)=>{
 rutas.get('/inicio',isAuthenticated , async (req,res)=>{
     if (req.isAuthenticated() && req.user) {
         const userId = req.user._id;
-        console.log(userId);
-    
+        console.log(userId);   
         // Utiliza userId para hacer una búsqueda en la base de datos u otras operaciones
        const us=await user.findById(userId);
-       res.render('inicio2',{us});
+       const rol=await user.findOne({_id:userId,rol:"admin"});
+       const hoja=await HV.findOne({usuario:userId});
+       res.render('inicio2',{us,hoja,rol});
     }
 
 })
@@ -69,6 +70,15 @@ rutas.get('/inicio/logout', isAuthenticated, (req,res)=>{
     res.redirect('/');
 })
 
+rutas.get('/inicio/vericv',isAuthenticated,async(req,res)=>{
+    const h=await HV.findOne({usuario:req.user._id});
+    if(h){
+        res.redirect('/inicio/cvedit1');
+    }else{
+        res.redirect('/inicio/cv');
+    }
+})
+
 rutas.get('/inicio/cv', isAuthenticated,(req,res)=>{
     res.render('cv')
 })
@@ -86,8 +96,6 @@ rutas.get('/inicio/cv/cv2', isAuthenticated ,(req,res)=>{
     res.render('cv2')
 })
 
-
-
 rutas.get('/inicio/cv/cv2/cv3', isAuthenticated ,(req,res)=>{
     res.render('cv3')
 })
@@ -98,9 +106,62 @@ rutas.post('/inicio/cv/cv2/cv3/verifi3',isAuthenticated,async(req,res)=>{
     const HVC= await HV.findOne({usuario:usu._id});
     HVC.estudios=({Tipo:datos3.Tipo,nombretitulo:datos3.nombretitulo,sobrel:datos3.sobrel});
     await HVC.save();
+    globo.notify({
+        title:"Hoja de vida creada",
+        message:"la hoja de vida ha sido creada correctamente",
+        sound:true,
+        wait:false,
+        type:'info'
+    })
     res.redirect('/inicio')
     
  })
+
+rutas.get('/inicio/cvedit1',isAuthenticated,async(req,res)=>{
+    const h=await HV.findOne({usuario:req.user._id});
+    const u=await user.findById(req.user._id);
+    res.render('HV',{h,u})
+})
+
+rutas.put('/inicio/cvedit1/cveditt1',isAuthenticated,async(req,res)=>{
+    const iduser=req.user._id;
+    const cuerpo=req.body;
+    const hvact=await HV.findOneAndUpdate({usuario:iduser},
+        {nombre:cuerpo.nombre,apellidos:cuerpo.apellidos,direccion:cuerpo.direccion,telefono:cuerpo.telefono
+    })
+    console.log(hvact);
+    res.redirect('/inicio/cvedit2');
+        
+});
+
+rutas.get('/inicio/cvedit2',isAuthenticated,(req,res)=>{
+    res.render('HV2');
+})
+
+rutas.get('/inicio/cvedit3',isAuthenticated,async(req,res)=>{
+    const HV33= await HV.findOne({usuario:req.user._id});
+    console.log(HV33)
+    res.render('HV3',{HV33});
+})
+
+rutas.put('/inicio/cvedit3/cveditt3',isAuthenticated,async(req,res)=>{
+    const cuerpo3= req.body;
+    const ideuser3=req.user._id;
+    const HV333=await HV.findOneAndUpdate({usuario:ideuser3},{
+        estudios:{
+            Tipo:cuerpo3.Tipo,
+            nombretitulo:cuerpo3.nombretitulo,
+            sobrel:cuerpo3.sobrel
+        }})
+    res.redirect('/inicio');
+    globo.notify({
+        title:"Hoja de vida actualizada",
+        message:"Hoja de vida actualizada correctamente",
+        wait:false,
+        sound:true,
+        type:"info"
+    })
+})
 
 rutas.get('/inicio/reportes', isAuthenticated ,(req,res)=>{
     res.render('reportes');
@@ -121,6 +182,7 @@ rutas.get('/inicio/crud', isAuthenticated, async (req,res)=>{
 
 rutas.delete('/inicio/crud/delete/:id', isAuthenticated, async (req,res)=>{
     await user.findByIdAndDelete(req.params.id);
+    await HV.findOneAndDelete({usuario:req.params.id});
     res.redirect('/inicio/crud');
     globo.notify({
         title:"Acción completada",
@@ -131,6 +193,8 @@ rutas.delete('/inicio/crud/delete/:id', isAuthenticated, async (req,res)=>{
         type:'info'
     })
 });
+
+
 
 rutas.get('/inicio/crud/edit/:id', isAuthenticated, async (req,res)=>{
     const u= await user.findById(req.params.id);
@@ -150,6 +214,7 @@ rutas.put('/inicio/crud/edit-user/:id',isAuthenticated, async (req,res)=>{
         type:'info'
     })
 })
+
 
 
 
