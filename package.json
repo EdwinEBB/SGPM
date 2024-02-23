@@ -23,7 +23,7 @@
     "fixed": "^0.3.1",
     "jsonwebtoken": "^9.0.2",
     "method-override": "^3.0.0",
-    "mongoose": "^7.5.3",
+    "mongoose": "^7.6.8",
     "morgan": "^1.10.0",
     "mustache": "^4.2.0",
     "node-notifier": "^10.0.1",
