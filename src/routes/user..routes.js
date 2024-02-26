@@ -5,4 +5,4 @@ const {mostrarusers}= require("../controllers/node.controllers");
 
 rutass.get('/crud',mostrarusers);
 
-module.exports= rutass;
+module.exports = rutass;

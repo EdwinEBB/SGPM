@@ -2,19 +2,21 @@ const mongo=require("mongoose");
 const bycript=require("bcrypt");
 const saltaround=10;
 
-const useresquema= new mongo.Schema({
-    Nombre: {type:String, required:true},
-    correo:{type:String, required:true, unique:true},
-    contraseña: {type:String, require:true},
-    rol:{
-    type:String,
-    enum:['usuario','admin'],
-    default:'usuario',
+const useresquema = new mongo.Schema(
+  {
+    Nombre: { type: String, required: true },
+    correo: { type: String, required: true, unique: true },
+    contraseña: { type: String, require: true },
+    rol: {
+      type: String,
+      enum: ["usuario", "admin"],
+      default: "usuario",
     },
-
-},{
-    timestamps:true
-});
+  },
+  {
+    timestamps: true,
+  }
+);
 
 
 useresquema.pre('save', function(next){

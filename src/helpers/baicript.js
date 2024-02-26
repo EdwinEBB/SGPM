@@ -9,4 +9,4 @@ const compare= async(contraplana,contraencrip)=>{
 }
 
 
-module.exports=compare;
+module.exports = compare;

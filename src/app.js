@@ -75,7 +75,7 @@ app.post('/autenticar', passport.authenticate('local',{
     failureRedirect:'/verficarcamposaut',
     successRedirect:'/inicio',
     failureFlash:false
-})
+}));
     
 
 

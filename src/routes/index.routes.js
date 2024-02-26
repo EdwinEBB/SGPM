@@ -8,8 +8,8 @@ rutas.use(configurarpassport());
 
 const {isAuthenticated}=require('../helpers/Autenticar');
 
-rutas.get('/',(req,res)=>{
-    res.render('index')
+rutas.get("/", (req, res) => {
+  res.render("index");
 });
 
 rutas.get('/login',(req,res)=>{

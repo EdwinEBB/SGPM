@@ -4,4 +4,4 @@ const globo= new notifier.WindowsBalloon({
     customPath:undefined
 });
 
-module.exports=globo
+module.exports = globo;
