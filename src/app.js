@@ -77,64 +77,6 @@ app.post('/autenticar', passport.authenticate('local',{
     failureFlash:false
 })
     
-/*const us={
-        correo:req.body.correo,
-        contraseña:req.body.contraseña
-    };
-    console.log(us.contraseña);
-
-    const si= async (p)=>{
-        
-        const encontrar= await usuario.findOne({correo:us.correo}).exec();
-       if(!encontrar){
-            globo.notify({
-                title:'Usuario no encontrado',
-                message:us.correo+' no esta registrado',
-                time:5000,
-                sound:false,
-                wait:true,
-                type:'error'
-            },
-            function(err,response){
-                console.log(response);
-            });
-            res.redirect('/login');
-        }else{
-            const checkcontra= await compare(us.contraseña,encontrar.contraseña);
-            console.log(checkcontra);
-            if(checkcontra){
-                notifier.notify({
-                    title:'Inicio de sesion completado',
-                    message:"Bienvenido "+encontrar.Nombre,
-                    icon:path.join(__dirname, 'public/img/logo.jpeg'),
-                    sound:true,
-                    wait:true,
-                    timeout:1
-                },
-                function(err,response,metadata){
-
-                })
-                res.redirect('/inicio')
-            }else{
-                globo.notify({
-                    title:'Contraseña incorrecta',
-                    message:"La contraseña que digitaste no es correcta",
-                    time:1000,
-                    timeout:1000,
-                    sound:true,
-                    wait:true,
-                    type:'warn'
-                },
-                function(err,response){
-                    console.log(response);
-                });
-                res.redirect('/login');
-            }
-        }
-    };
-    //console.log(us);
-    si(us);*/
-);
 
 
 
