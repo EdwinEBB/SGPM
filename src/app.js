@@ -8,16 +8,11 @@ const notifier=require("node-notifier");
 const path=require("path");
 const passport=require('passport');
 const configurarpassport=require('./config/passport');
+const globo=require("./helpers/Notificaciones")
 console.log(process.env.TESTING);
 require('./config/passport');
 app.use(configurarpassport());
-
 app.use(bodyparcero.json());
-
-var globo= new notifier.WindowsBalloon({
-    withFallback:false,
-    customPath:undefined
-});
 
 
 

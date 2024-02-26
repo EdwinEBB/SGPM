@@ -2,14 +2,9 @@ const passport = require('passport');
 const localport=require('passport-local').Strategy;
 const bc = require('bcrypt');
 const Usuario = require('../models/user');
-const notifi=require('node-notifier');
+const globo=require("../helpers/Notificaciones")
 const mongoose=require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
-
-var globo= new notifi.WindowsBalloon({
-    withFallback:false,
-    customPath:undefined
-});
 
 passport.use('local',new localport({
     usernameField: 'correo',

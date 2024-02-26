@@ -3,11 +3,7 @@ const rutas=express.Router();
 const user= require('../models/user');
 const HV= require('../models/cv');
 const configurarpassport=require('../config/passport');
-const notifier=require('node-notifier');
-const globo= new notifier.WindowsBalloon({
-    withFallback:false,
-    customPath:undefined
-});
+const globo=require("../helpers/Notificaciones")
 rutas.use(configurarpassport());
 
 const {isAuthenticated}=require('../helpers/Autenticar');
