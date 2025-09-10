@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const moveride = require("method-override");
 const session = require("express-session");
 const passport = require("passport");
+const { tk } = require("./config/config");
 require("./config/passport");
 
 app.set("port", process.env.PORT || 8000);
@@ -22,7 +23,7 @@ app.use(
   })
 );
 app.use(
-  session({ secret: "M18T09K2003", resave: true, saveUninitialized: true })
+  session({ secret: tk, resave: true, saveUninitialized: true })
 );
 app.use(passport.initialize());
 app.use(passport.session());
